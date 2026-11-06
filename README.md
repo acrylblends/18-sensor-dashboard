@@ -1,17 +1,22 @@
 # Sensor Dashboard
 
-Monitor device telemetry, device health and thresholds from sensors sending readings to an HTTP ingestion endpoint.
+An IoT operations dashboard: devices post readings to an HTTP ingest endpoint, with live values, history charts, thresholds and an alert log.
 
-An ACRYL Blends blueprint for the **Embedded / IoT** category (`acrylblends.sensor-dashboard`, category 18 of 100).
-
-Status: designed, being built. `design/spec.md` is the specification and `design/mockup.html` the mockup (open it in a browser). The app itself,
-composed from Cordis plugins (one `plugins/<feature>/` folder and one `blend.yaml` row per feature), lands here when it passes review.
-
-When it is ready you will start it with:
+## Run it
 
 ```sh
-npm create acrylblends@latest my-app -- --from acrylblends.sensor-dashboard
-cd my-app && npm install && npm run dev
+npm install
+npm start
 ```
 
-Listed on https://acrylblends.github.io/blends and https://acryl.dev/blends.
+Open the address it prints. `npm test` runs the tests (node:test; no network, no key).
+
+## What to ask the chat next
+
+- Ingest a CO₂ reading above 1500 ppm and open the alert.
+- Acknowledge the open alert from the alert log.
+- Lower the temperature warning threshold and simulate readings.
+
+## Screenshot
+
+![Sensor Dashboard](docs/screenshot.png)

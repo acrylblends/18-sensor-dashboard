@@ -1,0 +1,36 @@
+apiVersion: blends.acryl.dev/v1alpha1
+kind: Blueprint
+metadata:
+  id: acrylblends.sensor-dashboard
+  name: "Sensor Dashboard"
+  version: 0.1.0
+  category: embedded-iot
+  description: "An IoT operations dashboard: devices post readings to an HTTP ingest endpoint, with live values, history charts, thresholds and an alert log."
+  license: MIT
+  visibility: public
+spec:
+  runtime: cordis
+  parameters:
+    hostname: { type: string, default: 127.0.0.1 }
+  rows:
+    - id: router
+      name: acryl-router
+    - id: home
+      name: home
+    # The domain: devices, readings, thresholds and alerts, saved as JSON in the app's data home.
+    - id: sensors
+      name: sensors
+    # The SENSEGRID top bar with the tenant and the simulate action.
+    - id: sensors-shell
+      name: sensors-shell
+    # The dashboard, device detail, alert log, ingest endpoint and threshold forms.
+    - id: dashboard
+      name: dashboard
+    - id: extensions
+      name: extensions
+    - id: server
+      name: acryl-node-server
+      config:
+        hostname: "{{parameters.hostname}}"
+    - id: acryl-door
+      name: acryl-door

@@ -1,0 +1,9 @@
+{
+  "name": "sensors",
+  "description": "The Sensor Dashboard's domain: devices, readings, thresholds and alerts, saved as JSON in the app's data home. The page plugin injects it.",
+  "requires": [],
+  "inject": ["appInstance"],
+  "provides": ["sensors"],
+  "dependencies": { "@deepseek-ai/cordis": "4.0.4" },
+  "mount": "a row `- id: sensors` / `name: sensors` before the page rows in blend.yaml; a page injects the `sensors` service"
+}

@@ -1,0 +1,9 @@
+
+> sensor-dashboard@0.1.0 prestart
+> node scripts/check-node.cjs
+
+
+> sensor-dashboard@0.1.0 start
+> node --import ./plugins/acryl-node-server/src/register.ts src/main.ts
+
+sensor-dashboard listening on http://127.0.0.1:4718 (data in /Users/musichen/_projects/p11_acr_agentcontextrelay/acryldev/_testfield/batch01/b2/sensor-dashboard/.acrylblends)

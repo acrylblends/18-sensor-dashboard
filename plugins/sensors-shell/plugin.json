@@ -1,0 +1,9 @@
+{
+  "name": "sensors-shell",
+  "description": "The Sensor Dashboard's page shell: the SENSEGRID top bar with the tenant, the ingest label and the simulate action.",
+  "requires": [],
+  "inject": ["sensors", "router"],
+  "provides": ["shell"],
+  "dependencies": { "@deepseek-ai/cordis": "4.0.4" },
+  "mount": "a row `- id: sensors-shell` / `name: sensors-shell` after the sensors row and before the dashboard row in blend.yaml; a page injects `shell`"
+}

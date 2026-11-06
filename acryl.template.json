@@ -1,0 +1,5 @@
+{
+  "name": "Sensor Dashboard",
+  "description": "An IoT operations dashboard: devices post readings to an HTTP ingest endpoint, with live values, history charts, thresholds and an alert log.",
+  "plugins": []
+}
