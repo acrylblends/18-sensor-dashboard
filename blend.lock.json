@@ -162,7 +162,7 @@
     {
       "name": "sensors-shell",
       "origin": "local",
-      "digest": "sha256:9c9921abb0e01ed18bf05ca1fa7fbae351fbf48612794a957155a33fe7d652b7",
+      "digest": "sha256:ce87a957411070b67eef3cffd6264f84031de317fb17c62504ce6b015bdda1c9",
       "source": "plugins/sensors-shell"
     }
   ]
