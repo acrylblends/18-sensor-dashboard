@@ -17,21 +17,24 @@ export function seed(now: Date, newId: (kind: string) => string): SensorsState {
     { id: newId('device'), code: 'GHN-TMP-03', name: 'Air temperature', kind: 'Temperature', site: 'Greenhouse North', zone: 'Zone C', unit: '°C', status: 'online', lastSeenAt: at(0.7) },
     { id: newId('device'), code: 'GHN-WTR-01', name: 'Water flow', kind: 'Flow', site: 'Greenhouse North', zone: 'Utility', unit: 'L/min', status: 'offline', lastSeenAt: at(40) },
   ]
-  const values: Readonly<Record<string, number>> = { 'GHN-TMP-01': 24.6, 'GHN-HUM-03': 58.2, 'GHN-CO2-02': 1240, 'GHN-SOL-04': 36, 'GHN-LUX-01': 820, 'GHN-TMP-02': 23.9, 'GHN-HUM-04': 61.4, 'GHN-SOL-05': 33, 'GHN-LUX-02': 760, 'GHN-CO2-01': 940, 'GHN-TMP-03': 25.1, 'GHN-WTR-01': 0 }
+  const values: Readonly<Record<string, number>> = { 'GHN-TMP-01': 24.6, 'GHN-HUM-03': 58.2, 'GHN-CO2-02': 1240, 'GHN-SOL-04': 36, 'GHN-LUX-01': 820, 'GHN-TMP-02': 33, 'GHN-HUM-04': 61.4, 'GHN-SOL-05': 33, 'GHN-LUX-02': 760, 'GHN-CO2-01': 940, 'GHN-TMP-03': 25.1, 'GHN-WTR-01': 0 }
   const readings: Reading[] = []
   for (const device of devices) {
     const base = values[device.code] ?? 0
-    for (let index = 0; index < 24; index++) readings.push({ id: newId('reading'), deviceId: device.id, value: Math.round((base + Math.sin(index / 3) * (base * 0.04) + (index % 2 === 0 ? 0.2 : -0.2)) * 100) / 100, unit: device.unit, recordedAt: at(24 * 60 - index * 60) })
+    for (let index = 0; index < 24; index++) readings.push({ id: newId('reading'), deviceId: device.id, value: index === 23 ? base : Math.round((base + Math.sin(index / 3) * (base * 0.04) + (index % 2 === 0 ? 0.2 : -0.2)) * 100) / 100, unit: device.unit, recordedAt: at(24 * 60 - index * 60) })
   }
   const thresholds: Threshold[] = [
     { deviceId: devices[2]!.id, warning: 1000, critical: 1500, comparison: 'above' },
     { deviceId: devices[0]!.id, warning: 28, critical: 32, comparison: 'above' },
+    { deviceId: devices[5]!.id, warning: 28, critical: 32, comparison: 'above' },
   ]
   const co2 = readings.filter((reading) => reading.deviceId === devices[2]!.id).at(-1)
   const temp = readings.filter((reading) => reading.deviceId === devices[0]!.id).at(-1)
+  const hot = readings.filter((reading) => reading.deviceId === devices[5]!.id).at(-1)
   const alerts: Alert[] = [
     { id: newId('alert'), deviceId: devices[2]!.id, readingId: co2?.id ?? '', severity: 'warning', state: 'open', occurredAt: at(3) },
     { id: newId('alert'), deviceId: devices[0]!.id, readingId: temp?.id ?? '', severity: 'warning', state: 'acknowledged', occurredAt: at(90), acknowledgedAt: at(80) },
+    { id: newId('alert'), deviceId: devices[5]!.id, readingId: hot?.id ?? '', severity: 'critical', state: 'open', occurredAt: at(5) },
   ]
   return { version: 1, devices, readings, thresholds, alerts }
 }

@@ -1,0 +1,11 @@
+{
+  "name": "devices",
+  "description": "Devices at /devices and /devices/:id: the inventory with an online/offline filter, per-device readings, thresholds and recent alerts.",
+  "requires": [],
+  "inject": ["sensors", "shell", "router"],
+  "provides": [],
+  "dependencies": {
+    "@deepseek-ai/cordis": "4.0.4"
+  },
+  "mount": "a row `- id: devices` / `name: devices` after the dashboard row in blend.yaml"
+}

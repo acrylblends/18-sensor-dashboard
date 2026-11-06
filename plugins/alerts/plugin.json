@@ -1,0 +1,11 @@
+{
+  "name": "alerts",
+  "description": "The alert log at /alerts: threshold crossings with severity, state, timestamps, an open/acknowledged filter and the acknowledge action.",
+  "requires": [],
+  "inject": ["sensors", "shell", "router"],
+  "provides": [],
+  "dependencies": {
+    "@deepseek-ai/cordis": "4.0.4"
+  },
+  "mount": "a row `- id: alerts` / `name: alerts` after the devices row in blend.yaml"
+}

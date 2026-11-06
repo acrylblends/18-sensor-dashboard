@@ -1,5 +1,5 @@
 {
   "name": "Sensor Dashboard",
-  "description": "An IoT operations dashboard: devices post readings to an HTTP ingest endpoint, with live values, history charts, thresholds and an alert log.",
+  "description": "An IoT operations dashboard: 12 devices with 11 online, 4,320 readings an hour, one critical and one warning alert, live sensor cards, a 24h/7d history, device details, threshold editing, an alert log and a validated HTTP ingest contract.",
   "plugins": []
 }

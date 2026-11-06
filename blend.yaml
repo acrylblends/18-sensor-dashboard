@@ -5,7 +5,7 @@ metadata:
   name: "Sensor Dashboard"
   version: 0.1.0
   category: embedded-iot
-  description: "An IoT operations dashboard: devices post readings to an HTTP ingest endpoint, with live values, history charts, thresholds and an alert log."
+  description: "An IoT operations dashboard: 12 devices with 11 online, 4,320 readings an hour, one critical and one warning alert, live sensor cards, a 24h/7d history, device details, threshold editing, an alert log and a validated HTTP ingest contract."
   license: MIT
   visibility: public
 spec:
@@ -23,9 +23,18 @@ spec:
     # The SENSEGRID top bar with the tenant and the simulate action.
     - id: sensors-shell
       name: sensors-shell
-    # The dashboard, device detail, alert log, ingest endpoint and threshold forms.
+    # The dashboard at /: the summary, live sensor cards, device status and the 24h/7d history.
     - id: dashboard
       name: dashboard
+    # Devices at /devices and /devices/:id: the inventory with an offline filter, readings, thresholds and device alerts.
+    - id: devices
+      name: devices
+    # The alert log at /alerts: threshold crossings, their state and the acknowledge action.
+    - id: alerts
+      name: alerts
+    # The HTTP ingest contract at /ingest: device, unit and timestamp validation, with an alert when a threshold is crossed.
+    - id: ingest
+      name: ingest
     - id: extensions
       name: extensions
     - id: server

@@ -19,6 +19,14 @@ export function whenText(stamp: string, now: Date): string {
   const hours = Math.floor(minutes / 60)
   return `${hours}h ago`
 }
+/** `24.6`, `1,240`, `36`: readings shown with at most one decimal and grouped thousands. */
+export function valueText(value: number): string {
+  const rounded = Number.isInteger(value) ? value : Math.round(value * 10) / 10
+  const [whole, fraction] = String(Math.abs(rounded)).split('.') as [string, string | undefined]
+  const grouped = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return `${rounded < 0 ? '-' : ''}${grouped}${fraction === undefined ? '' : `.${fraction}`}`
+}
+
 /** The severity a value crosses for a threshold, or null when it is inside the range. */
 export function evaluate(value: number, threshold: Threshold | undefined): Severity | null {
   if (threshold === undefined) return null

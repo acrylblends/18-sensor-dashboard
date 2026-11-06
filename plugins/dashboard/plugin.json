@@ -1,0 +1,11 @@
+{
+  "name": "dashboard",
+  "description": "The sensor dashboard at /: active devices, readings per hour, alerts, uptime, the live temperature and humidity cards, the five-device status list, the 24h/7d history chart and the threshold editor.",
+  "requires": [],
+  "inject": ["sensors", "shell", "router"],
+  "provides": [],
+  "dependencies": {
+    "@deepseek-ai/cordis": "4.0.4"
+  },
+  "mount": "a row `- id: dashboard` / `name: dashboard` after the shell row in blend.yaml"
+}

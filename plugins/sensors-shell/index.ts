@@ -11,7 +11,7 @@ export const name = 'sensors-shell'
 export const inject = ['sensors', 'router']
 declare module '@deepseek-ai/cordis' { interface Context { shell: Shell } }
 function topbar(_nav: readonly NavItem[], _crumbs: readonly string[], href: (path: string) => string, _meta: string, _active: string | undefined): string {
-  return `<header class="top"><a class="logo" href="${href('/')}" style="text-decoration:none;color:inherit">SENSE<span><i>GRID</i></span></a><div class="tenant">SITE / GREENHOUSE NORTH · 12 DEVICES</div><div class="topright">INGEST / HTTP · DEMO STREAM</div><form method="post" action="${href('/simulate')}" style="margin:0"><button style="background:#1a9b87;color:white;border:0;border-radius:4px;padding:8px 11px;font-size:8px">▶ Simulate readings</button></form></header>`
+  return `<header class="top"><a class="logo" href="${href('/')}" style="text-decoration:none;color:inherit">SENSE<span><i>GRID</i></span></a><div class="tenant">SITE / GREENHOUSE NORTH · 12 DEVICES</div><div class="topright">INGEST / HTTP · DEMO STREAM</div><form method="post" action="${href('/simulate')}" style="margin:0"><button style="background:#1a4147;color:#e4f0ed;border:1px solid #45676a;border-radius:4px;padding:8px 11px;font-size:8px">▶ Simulate readings</button></form></header>`
 }
 export function apply(ctx: Context, config: ShellConfig = {}): void {
   const sensors: Sensors = ctx.sensors

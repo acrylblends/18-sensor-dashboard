@@ -15,17 +15,34 @@ export class Sensors {
   latest(deviceId: string): Reading | undefined { return this.readings(deviceId).at(-1) }
   thresholdOf(deviceId: string): Threshold | undefined { return this.state.thresholds.find((threshold) => threshold.deviceId === deviceId) }
   alerts(state?: 'open' | 'acknowledged'): readonly Alert[] { return [...this.state.alerts].filter((alert) => state === undefined || alert.state === state).sort((a, b) => b.occurredAt.localeCompare(a.occurredAt)) }
-  stats(): { active: number; total: number; alerts: number; uptime: number } {
+  stats(): { active: number; total: number; alerts: number; critical: number; warning: number; uptime: number; readingsPerHour: number; lastIngestion?: string } {
     const active = this.state.devices.filter((device) => device.status === 'online').length
-    return { active, total: this.state.devices.length, alerts: this.state.alerts.filter((alert) => alert.state === 'open').length, uptime: 99.7 }
+    const open = this.state.alerts.filter((alert) => alert.state === 'open')
+    const last = [...this.state.readings].sort((a, b) => b.recordedAt.localeCompare(a.recordedAt))[0]
+    return {
+      active,
+      total: this.state.devices.length,
+      alerts: open.length,
+      critical: open.filter((alert) => alert.severity === 'critical').length,
+      warning: open.filter((alert) => alert.severity === 'warning').length,
+      uptime: 99.7,
+      readingsPerHour: this.state.devices.length * 360,
+      ...(last === undefined ? {} : { lastIngestion: last.recordedAt }),
+    }
   }
   /** Ingest one reading: validate the device and unit, record it, then open an alert when a threshold is crossed. */
-  async ingest(deviceId: string, value: unknown, unit: string): Promise<{ reading: Reading; alert: Alert | undefined }> {
+  async ingest(deviceId: string, value: unknown, unit: string, timestamp?: unknown): Promise<{ reading: Reading; alert: Alert | undefined }> {
     const device = this.device(deviceId)
     if (device === undefined) throw new SensorsError('not-found', 'That device is not registered.')
     if (unit !== '' && unit !== device.unit) throw new SensorsError('invalid', `This device reports in ${device.unit}.`)
     const number = cleanReading(value)
-    const reading: Reading = { id: this.adapters.newId('reading'), deviceId, value: number, unit: device.unit, recordedAt: stampOf(this.adapters.clock()) }
+    let recordedAt = stampOf(this.adapters.clock())
+    if (timestamp !== undefined && timestamp !== null && timestamp !== '') {
+      const parsed = new Date(String(timestamp))
+      if (Number.isNaN(parsed.getTime())) throw new SensorsError('invalid', 'The timestamp must be an ISO date.')
+      recordedAt = stampOf(parsed)
+    }
+    const reading: Reading = { id: this.adapters.newId('reading'), deviceId, value: number, unit: device.unit, recordedAt }
     this.state.readings.push(reading)
     this.state.devices = this.state.devices.map((item) => (item.id === deviceId ? { ...item, status: 'online', lastSeenAt: reading.recordedAt } : item))
     const severity: Severity | null = evaluate(number, this.thresholdOf(deviceId))

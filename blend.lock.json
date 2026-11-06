@@ -1,0 +1,169 @@
+{
+  "formatVersion": 3,
+  "generator": {
+    "name": "@webboxes/blends-core",
+    "version": "0.4.0"
+  },
+  "origin": {
+    "id": "acrylblends.sensor-dashboard",
+    "kind": "Blueprint",
+    "version": "0.1.0",
+    "digest": "8451998fc32ba55fa54a68df1c2cee8c50b7bebf391dc6306ffa888d06cf12ab"
+  },
+  "parameters": {
+    "hostname": "127.0.0.1"
+  },
+  "rows": [
+    {
+      "id": "router",
+      "name": "acryl-router"
+    },
+    {
+      "id": "home",
+      "name": "home"
+    },
+    {
+      "id": "sensors",
+      "name": "sensors"
+    },
+    {
+      "id": "sensors-shell",
+      "name": "sensors-shell"
+    },
+    {
+      "id": "dashboard",
+      "name": "dashboard"
+    },
+    {
+      "id": "devices",
+      "name": "devices"
+    },
+    {
+      "id": "alerts",
+      "name": "alerts"
+    },
+    {
+      "id": "ingest",
+      "name": "ingest"
+    },
+    {
+      "id": "extensions",
+      "name": "extensions"
+    },
+    {
+      "id": "server",
+      "name": "acryl-node-server",
+      "config": {
+        "hostname": "127.0.0.1"
+      }
+    },
+    {
+      "id": "acryl-door",
+      "name": "acryl-door"
+    }
+  ],
+  "modules": [
+    {
+      "name": "acryl-door",
+      "origin": "local",
+      "digest": "sha256:33468e9fe92b1fd9b74b2ff2634ecc92536bb254edf8f23449734792c48c8085",
+      "source": "plugins/acryl-door"
+    },
+    {
+      "name": "acryl-node-server",
+      "origin": "local",
+      "digest": "sha256:a6a0ca8b7117cfc07e6cc5f8338c79491d37574e3c2e106f8d7bc60f32c24108",
+      "source": "plugins/acryl-node-server"
+    },
+    {
+      "name": "acryl-page",
+      "origin": "local",
+      "digest": "sha256:d6c2395b7adbed77f5897bf7b3192e6a007a2ac9d584c452ac4991770134faf7",
+      "source": "plugins/acryl-page"
+    },
+    {
+      "name": "acryl-router",
+      "origin": "local",
+      "digest": "sha256:ab4da3de0c211b9f176b3b42ec28eb7a405b263e01e103d42d09a8c9c1ec577d",
+      "source": "plugins/acryl-router"
+    },
+    {
+      "name": "acryl-web-server",
+      "origin": "local",
+      "digest": "sha256:d779f808eccf489a1edd21125176a430c5a6fd1fd1837161fe10f5af64965137",
+      "source": "plugins/acryl-web-server"
+    },
+    {
+      "name": "alerts",
+      "origin": "local",
+      "digest": "sha256:8cee25e9ed4ffaa75aa3aad03d96e228c9929da90b02e4b6c69decfb67195bfc",
+      "source": "plugins/alerts"
+    },
+    {
+      "name": "dashboard",
+      "origin": "local",
+      "digest": "sha256:a1560f325d4e9edea0abf0593c113a027a6761693c50e071698655963067f95f",
+      "source": "plugins/dashboard"
+    },
+    {
+      "name": "devices",
+      "origin": "local",
+      "digest": "sha256:97a5c814a9120590e8d3ec55a81f26e36a8ae383dd1be941936b8e2f8365436b",
+      "source": "plugins/devices"
+    },
+    {
+      "name": "extensions",
+      "origin": "local",
+      "digest": "sha256:e35694f246e55fea31ef260ce518eeb415634a51eaac3d501efee5b8d1f59cc1",
+      "source": "plugins/extensions"
+    },
+    {
+      "name": "home",
+      "origin": "local",
+      "digest": "sha256:1e337729803099600244f291ce0e57d9ab6a33df7e1e7d7b851af50841be4643",
+      "source": "plugins/home"
+    },
+    {
+      "name": "ingest",
+      "origin": "local",
+      "digest": "sha256:64c63511223ab1e5eff64ae7c0f37e15bef8bc2e1ec6e2a22d8af7b4b242ca37",
+      "source": "plugins/ingest"
+    },
+    {
+      "name": "instance",
+      "origin": "local",
+      "digest": "sha256:558187902bbad28cc7afaf92604b843b60aafcae204ae574c07dd5fcad4534e4",
+      "source": "plugins/instance"
+    },
+    {
+      "name": "manifest",
+      "origin": "local",
+      "digest": "sha256:8a8af57a7f97b6fe495eaaba37d2557284143d091a042d75c228dbfea246756a",
+      "source": "plugins/manifest"
+    },
+    {
+      "name": "sandbox",
+      "origin": "local",
+      "digest": "sha256:e632be6cb4271ea2549db334a1b999fb03fd76c23b96986030f97f29b518999e",
+      "source": "plugins/sandbox"
+    },
+    {
+      "name": "save",
+      "origin": "local",
+      "digest": "sha256:55e86e2d26d5722921ec1fd8e99e5f5a6333b79c7aa2bbb11eee12d9f50f3aa9",
+      "source": "plugins/save"
+    },
+    {
+      "name": "sensors",
+      "origin": "local",
+      "digest": "sha256:097734993b7853dd05f75273ced5ecc4da163b544612329689bb0516d245f2fa",
+      "source": "plugins/sensors"
+    },
+    {
+      "name": "sensors-shell",
+      "origin": "local",
+      "digest": "sha256:9c9921abb0e01ed18bf05ca1fa7fbae351fbf48612794a957155a33fe7d652b7",
+      "source": "plugins/sensors-shell"
+    }
+  ]
+}

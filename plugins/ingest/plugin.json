@@ -1,0 +1,11 @@
+{
+  "name": "ingest",
+  "description": "The HTTP ingest contract at /ingest: POST a device id or code, a value, the unit and an optional ISO timestamp; the device, unit and timestamp are validated and a threshold crossing opens an alert.",
+  "requires": [],
+  "inject": ["sensors", "shell", "router"],
+  "provides": [],
+  "dependencies": {
+    "@deepseek-ai/cordis": "4.0.4"
+  },
+  "mount": "a row `- id: ingest` / `name: ingest` after the alerts row in blend.yaml"
+}
